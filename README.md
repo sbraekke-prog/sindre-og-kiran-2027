@@ -1,2 +1,1 @@
-# sindre-og-kiran-bryllup-2027
-# sindre-og-kiran-bryllup-2027git
+Dette er et lokalt repo for nettsiden til meg og Kiran
