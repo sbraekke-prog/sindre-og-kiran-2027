@@ -3,35 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vårt bryllup 2027</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
+    <title>Kiran og Sindre sitt bryllup 2027</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Mea+Culpa&family=MonteCarlo&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <h1>Kiran og Sindre | 2027</h1>
-        <nav>
-            <ul>
+        <nav class="hamburger-nav">
+            <input type="checkbox" id="meny-trigger" class="meny-checkbox">
+            <label for="meny-trigger" class="hamburger-knapp">
+                <span class="strek"></span>
+                <span class="strek"></span>
+                <span class="strek"></span>
+            </label>
+            <ul class ="meny-linker">
                 <li><a href="#vielsen">Vielsen</a></li>
                 <li><a href="#fest-og-middag">Fest og middag</a></li>
                 <li><a href="#gaveliste">Gaveliste</a></li>
             </ul>
         </nav>
+        </header>
+        <section id="header-image">
         <main>
-                <section id="vielsen">
-                    <h2>Vielsen</h2>
-                    <p>Vielsen vil finne sted i Gamle Fredrikstad Kirke den 14. august 2027 kl. 13:00.</p>
-                    <p>Les mer om kirken og hvordan vielsen vil bli gjennomført: <a href="/vielsen">Vielsen</a></p>
+            <section class="karusell-seksjon">
+                <div class="karusell-container">
+                    <div class="info-boks" id="vielsen">
+                        <img src="bilder/ikon_vielse.png" alt="Vielsen ikon" class="boks-ikon">
+                        <h2>Vielsen</h2>
+                        <p>Vielsen vil finne sted i Gamle Fredrikstad Kirke den 14. august 2027 kl. 13:00.</p>
+                        <p>Vi har laget en oversikt over veibeskrivelse og hvordan sermonien vil bli gjennomført.</p>
+                        <button class="mer-info-knapp" type = "button" onclick="window.location.href='/vielsen'">Mer informasjon om vielsen</button>
+                    </div>
+                    <div class="info-boks" id="fest-og-middag">
+                        <img src="bilder/ikon_fest-og-middag.png" alt="Fest og middag ikon" class="boks-ikon">
+                        <h2>Fest og middag</h2>
+                        <p>Etter vielsen inviterer vi til fest og middag på Skjellumfjellet kl. 17:00.</p>
+                        <p>Her finner du veibeskrivelse, klesskode og alt du måtte lure på.</p>
+                        <button class="mer-info-knapp" type = "button" onclick="window.location.href='/fest-og-middag'">Mer informasjon om fest og middag</button>
+                    </div>
+                    <div class="info-boks" id="gaveliste">
+                        <img src="bilder/ikon_gaveliste.png" alt="Gaveliste ikon" class="boks-ikon">
+                        <h2>Gaveliste</h2>
+                        <p>Vi har opprettet en gaveliste hos forskjellige steder, og en liste over det vi ønsker.</p>
+                        <p>Vi setter stor pris på alle gaver!</p>
+                        <p>Du kan også her registrere gaven du kjøper.</p>
+                            <button class="mer-info-knapp" type = "button" onclick="window.location.href='/gaveliste'">Mer informasjon om vår gaveliste</button>
+                    </div>
                 </section>
-    
-                <section id="fest-og-middag">
-                    <h2>Fest og middag</h2>
-                    <p>Etter vielsen inviterer vi til fest og middag på Skjellumfjellet kl. 17:00.</p>
-                    <p>Her finner du veibeskrivelse, klesskode og alt du måtte lure på: <a href="/fest-og-middag">Fest og middag</a></p>
-                </section>
-    
-                <section id="gaveliste">
-                    <h2>Gaveliste</h2>
-                    <p>Vi har opprettet en gaveliste hos forskjellige steder. Her kan du registere gaven du kjøper <a href="/gaveliste">Vår gaveliste</a>.</p>
-                </section>
+            </section>
         </main>
-    </header>
+    </section>

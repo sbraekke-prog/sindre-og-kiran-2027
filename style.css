@@ -1,7 +1,225 @@
-body {
-    font-family: Arial, sans-serif;
-    background-image: url("/bilder/Kiran\ og\ Sindre.JPG");
-    background-size: cover;
+* {
+    margin:0;
+    box-sizing: border-box;
+}
+header {
+    background-color: #741e5f;
+    width: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    padding: 20px 40px;
+    align-items: center;
+}
+
+header h1 {
+    font-family: 'MonteCarlo', cursive;
+    font-size: 3em;
+    color: #fff;
     margin: 0;
+    text-align: center;
+}
+header nav {
+    padding-top: 15px;
+} 
+
+header nav ul{
+    display: flex;
+    list-style: none;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    gap: 20px;
+    align-items: center;
+}
+
+header nav ul li {
+    width: auto;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+nav ul li a:hover {
+    color: rgba(47, 29, 148, 1);
+    text-decoration: underline;
+}
+
+.meny-checkbox {
+    display: none;
+}
+
+.hamburger-knapp {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.hamburger-knapp .strek {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.meny-linker {
+    position: fixed;
+    top: 20px;
+    right: -320px;
+    width: 280px;
+    height: auto;
+    background-color: #141b57f2;;
+    padding: 100px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px 0 0 15px;
+}
+
+.meny-linker a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.3em;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.meny-linker a:hover {
+    color: #741e5f;
+}
+
+.meny-checkbox:checked ~ .meny-linker {
+    right: 20px;
+}
+
+.meny-checkbox:checked ~ .hamburger-knapp .strek:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.meny-checkbox:checked ~ .hamburger-knapp .strek:nth-child(2) {
+    opacity: 0; 
+}
+.meny-checkbox:checked ~ .hamburger-knapp .strek:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+section[id="header-image"] {
+    width: 100%;
+    height: 100vh;
+    background-image: url("bilder/Kiran og Sindre.JPG");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.175), rgba(0, 0, 0, 0.731)), url("bilder/Kiran og Sindre.JPG");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.karusell-seksjon {
+    width: 100%;
+    padding: 150px 20px 80px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.karusell-container {
+    display: flex;
+    gap: 25px;                  
+    overflow-x: auto;           
+    scroll-snap-type: x mandatory; 
     padding: 20px;
+    width: 100%;
+    max-width: 1200px;          
+    -webkit-overflow-scrolling: touch;
+}
+.karusell-container::-webkit-scrollbar {
+    display: none;    
+}
+
+
+.info-boks {
+    flex: 0 0 350px;
+    min-height: 450px;            
+    scroll-snap-align: center;  
+    background-color: #141b57f2; 
+    color: #fff;                
+    padding: 30px;
+    border-radius: 15px;        
+    box-shadow: 0 10px 25px #0000001a;
+    transition: transform 0.3s ease;
+}
+.info-boks p {
+    color: #fff;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+.info-boks a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: auto;
+    align-self: flex-end;
+}
+
+.info-boks a:hover {
+    text-decoration: underline;
+    transform: translateY(-5px);
+}
+
+.info-boks h2 {
+    color: #fff;             
+    margin-bottom: 15px;
+    font-size: 2em;
+}
+.mer-info-knapp {
+    background-color: #741e5f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.85em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.mer-info-knapp:hover {
+    background-color: #49163f;
+    transform: translateY(-3px);
+}   
+
+.boks-ikon {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+    transition: transform 0.3s ease;
+    z-index: 5;
 }
