@@ -215,6 +215,7 @@ nav ul li a:hover {
     color: #fff;
     line-height: 1.6;
     margin-bottom: 25px;
+    font-size: 1.5em;
 }
 .info-boks a {
     color: #fff;
@@ -336,7 +337,7 @@ nav ul li a:hover {
 }
 .modal-innhold-container p {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3em;
+    font-size: 1.5em;
     padding: 5px;
 }
 
@@ -389,55 +390,6 @@ nav ul li a:hover {
     align-items: center;
     text-align: center;
 }
-
-/*.svar-spørsmål-seksjon {
-    width: 100%;
-    padding: 0px 20px 30px 20px; 
-    display: flex;
-    justify-content: center;
-    clear: both !important;
-    position: relative !important;
-    box-sizing: border-box;
-}
-
-.svar-spørsmål-boks {
-    width: calc(100% - 30px);        
-    max-width: 1200px; 
-    aspect-ratio: auto;
-    background-color: rgba(20, 27, 87, 0.49);
-    color: #fff;
-    padding: 40px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px #0000001a;
-    text-align: center;
-    box-sizing: border-box;
-    margin-right: 15px;
-    margin-left: 25px; 
-}
-
-/*.svar-spørsmål-boks {
-    width: calc(100% - 30px);        
-    max-width: 1200px; 
-    aspect-ratio: auto;
-    background-color: #141b577d;
-    color: #fff;
-    padding: 40px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px #0000001a;
-    text-align: center;
-    box-sizing: border-box;
-    margin-right: 15px;
-    margin-left: 25px; 
-}
-*/
 .svar-spørsmål-boks h2 {
     color: #fff;             
     font-size: 2em;
@@ -446,19 +398,18 @@ nav ul li a:hover {
     justify-content: center;
     margin: 0px 0px 15px 0px;
 }
-
 .svar-spørsmål-boks p {
     color: #fff;
     line-height: 1.6;
     margin-bottom: 25px;
+    font-size: 1.5em;
 }
-
 .mer-info-knapp {
     background-color: #741e5f;
     color: #fff;
     border: none;
     padding: 10px 20px;
-    font-size: 0.85em;
+    font-size: 1em;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.3s ease;
