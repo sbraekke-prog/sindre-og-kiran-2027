@@ -70,6 +70,37 @@
                             <button class="mer-info-knapp" type="button" onclick="window.location.href='/kontakt'">Les spørsmål og svar</button>
                         </div>
                     </section>
+                    <div id ="info-modal" class="modal-backdrop">
+                        <div class="modal-vindu">
+                            <button class="lukk-modal-knapp" onclick="lukkModal()">&times;</button>
+                            <nav class="modal-tabs">
+                                <button class="tab-knapp" id="tab-button-rsvp" onclick="byttFane('rsvp')">RSVP 📩</button>
+                                <button class="tab-knapp" id="tab-button-vielsen" onclick="byttFane('vielsen')">Vielsen ⛪️</button>
+                                <button class="tab-knapp" id="tab-button-fest-og-middag" onclick="byttFane('fest-og-middag')">Fest og middag 🎉</button>
+                                <button class="tab-knapp" id="tab-button-gaveliste" onclick="byttFane('gaveliste')">Gaveliste 🎁</button>
+                            </nav>
+                            <div class="modal-innhold-container">
+                                <div id="fane-innhold-rsvp" class="fane-innhold">
+                                    <h3>Svar på invitasjonen</h3>
+                                    <p>Skjema for RSVP</p>
+                                </div>
+                            <div id="fane-innhold-vielsen" class="fane-innhold">
+                                <h3>Informasjon om vielsen</h3>
+                                <p> Vielsen finner sted i Gamle Fredrikstad Kirke</p>
+                                <p>Her kommer informasjon om veibeskrivelse, klesskode, program, parkering</p>
+                            </div>
+                            <div class="modal-innhold-fest-og-middag" class="fane-innhold">
+                                <h3>Fest og middag på Skjellumfjellet</h3>
+                                <p>Det blir middag fra kl 17 hvor vi starter med apertif</p>
+                                <p>Veibeskrivelse og kleskode</p>
+                            </div>
+                            <div class="modal-innhold-gaveliste" class="fane-innhold">
+                                <h3>Gaveliste</h3>
+                                <p> Vi har registrert oss flere steder, her finner du en liste</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
             </main>
 </body>
 <footer>

@@ -20,3 +20,40 @@ container.addEventListener('scroll', () => {
         }
     });
 });
+
+function apneModal(faneId) {
+    const modal = document.getElementById('info-modal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    byttFane(faneId);
+}
+
+function lukkModal() {
+    const modal = document.getElementById('info-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+function byttFane(faneId) {
+    document.querySelectorAll('.fane-innhold').forEach(innhold => {
+        innhold.classList.remove('aktiv');
+    });
+    document.querySelectorAll('.tab-knapp').forEach(knapp => {
+        knapp.classList.remove('aktiv');
+    });
+    const valgtInnhold = document.getElementById(`fane-innhold-${faneId}`);
+    const valgtKnapp = document.getElementById(`tab-btn-${faneId}`);
+
+    if (valgtInnhold && valgtKnapp) {
+        valgtInnhold.classList.add('aktiv');
+        valgtKnapp.classList.add('aktiv');
+    }
+}
+
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('info-modal');
+    if (event.target === modal) {
+        lukkModal();
+    }
+});
