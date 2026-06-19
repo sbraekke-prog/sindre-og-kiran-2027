@@ -60,3 +60,12 @@ window.addEventListener('click', (event) => {
         lukkModal();
     }
 });
+
+function apneFraMeny(faneId) {
+    const menyCheckbox = document.querySelector('.meny-checkbox');
+    if (menyCheckbox) {
+        menyCheckbox.checked = false;
+    }
+    
+    apneModal(faneId);
+}

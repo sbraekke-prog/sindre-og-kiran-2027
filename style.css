@@ -272,6 +272,7 @@ nav ul li a:hover {
 }
 .lukk-modal-knapp {
     position: absolute;
+    display: none;
     top: 15px;
     right: 20px;
     background: none;
