@@ -23,7 +23,7 @@ main {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(to bottom, rgba(8, 10, 35, 0.8) 0%, rgba(133, 133, 133, 0) 100%), url("bilder/kiran-sindre.jpg");
+    background-image: linear-gradient(to bottom, rgba(8, 10, 35, 1) 0%, rgba(133, 133, 133, 0) 70%), url("bilder/kiran-sindre.jpg");
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -194,7 +194,7 @@ nav ul li a:hover {
     flex: 0 0 350px;
     min-height: 250px;            
     scroll-snap-align: center;  
-    background-color: #141b577d; 
+    background-color: #141b57cc; 
     color: #fff;                
     padding: 30px;
     border-radius: 15px;        
@@ -246,11 +246,9 @@ nav ul li a:hover {
 .svar-spørsmål-boks {
     width: 100%;
     max-width: 100vh;
-    padding: 15px;
-    padding-bottom: 5px !important;
-    margin-bottom: 0px !important;
+    padding: 40px 30px;
     box-sizing: border-box;
-    background-color: #141b577d;
+    background-color: #141b57cc;
     color: #fff;
     border-radius: 15px;
     box-shadow: 0 10px 25px #0000001a;
