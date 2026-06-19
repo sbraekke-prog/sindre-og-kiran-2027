@@ -16,7 +16,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(to bottom, rgba(20, 27, 87, 0.8) 0%, rgba(20, 27, 87, 0) 100%), url("bilder/kiran-sindre.JPG");
+    background-image: linear-gradient(to bottom, rgba(8, 10, 35, 0.8) 0%, rgba(133, 133, 133, 0) 100%), url("bilder/kiran-sindre.JPG");
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -228,6 +228,34 @@ nav ul li a:hover {
 
 .svar-spørsmål-seksjon {
     width: 100%;
+    padding: 15px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    clear: both !important;
+    position: relative !important;
+    box-sizing: border-box;
+}
+
+.svar-spørsmål-boks {
+    width: 100%;
+    max-width: 100vh;
+    padding: 15px;
+    padding-bottom: 5px !important;
+    margin-bottom: 0px !important;
+    box-sizing: border-box;
+    background-color: #141b577d;
+    color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px #0000001a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/*.svar-spørsmål-seksjon {
+    width: 100%;
     padding: 0px 20px 30px 20px; 
     display: flex;
     justify-content: center;
@@ -237,6 +265,25 @@ nav ul li a:hover {
 }
 
 .svar-spørsmål-boks {
+    width: calc(100% - 30px);        
+    max-width: 1200px; 
+    aspect-ratio: auto;
+    background-color: rgba(20, 27, 87, 0.49);
+    color: #fff;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px #0000001a;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 15px;
+    margin-left: 25px; 
+}
+
+/*.svar-spørsmål-boks {
     width: calc(100% - 30px);        
     max-width: 1200px; 
     aspect-ratio: auto;
@@ -254,7 +301,7 @@ nav ul li a:hover {
     margin-right: 15px;
     margin-left: 25px; 
 }
-
+*/
 .svar-spørsmål-boks h2 {
     color: #fff;             
     font-size: 2em;
