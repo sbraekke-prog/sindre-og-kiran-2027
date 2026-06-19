@@ -44,7 +44,7 @@ header nav ul li {
 @media (max-width: 768px) {
     
     header, .hero {
-        padding: 60px 20px !important; 
+        padding: 30px 60px 20px 10px !important; 
         height: auto !important; 
         min-height: auto !important;
     }
