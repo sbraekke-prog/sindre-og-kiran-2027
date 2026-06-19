@@ -6,8 +6,8 @@
 body {
     font-family: 'Cormorant Garamond', serif;
     margin: 0;
-    padding: 0;
-    background-color: #141b57
+    padding: 0; 
+    background-color: #141b5739
 }
 
 .mobil-bakgrunn {
@@ -15,7 +15,8 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    background-image: url("bilder/Kiran\ og\ Sindre.JPG");
+    height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(20, 27, 87, 0.8) 0%, rgba(20, 27, 87, 0) 100%), url("bilder/kiran-sindre.JPG");
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -291,6 +292,7 @@ nav ul li a:hover {
 }
 footer {    
     background-color: #741e5f;
+    color: #fff;
     text-align: left;
     padding: 10px 40px;
 }
