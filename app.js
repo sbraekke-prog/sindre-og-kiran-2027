@@ -37,7 +37,7 @@ window.addEventListener('touchend', (event) => {
         touchEndX = event.changedTouches[0].screenX;
         
         const sveipDistanse = touchStartX - touchEndX;
-        const sensitivitet = 50; // Antall piksler man må sveipe for å bytte fane
+        const sensitivitet = 75; // Antall piksler man må sveipe for å bytte fane
 
         if (Math.abs(sveipDistanse) > sensitivitet) {
             if (sveipDistanse > 0) {
@@ -104,30 +104,30 @@ function apneFraMeny(faneId) {
     apneModal(faneId);
 }
 function visNesteFane() {
-    // 1. Hent alle fanene dine i den rekkefølgen de ligger i HTML-en
+    // 1. Hent alle fanene
     const faner = Array.from(document.querySelectorAll('.fane-innhold')); 
-    // 2. Finn fane-innholdet som har klassen 'aktiv' akkurat nå
-    const aktivFane = document.querySelector('.fane-innhold.aktiv'); 
+    
+    // 2. Finn fanen som er synlig akkurat nå (siden stilen endres dynamisk)
+    const aktivFane = faner.find(fane => fane.style.display === 'block' || fane.style.display === 'flex' || fane.classList.contains('aktiv')); 
     
     if (aktivFane && faner.length > 0) {
         const gjeldendeIndex = faner.indexOf(aktivFane);
-        // Hvis det finnes en fane etter denne, bytt til den
         if (gjeldendeIndex !== -1 && gjeldendeIndex < faner.length - 1) {
             const nesteFaneId = faner[gjeldendeIndex + 1].id;
-            byttFane(nesteFaneId); // Bruker din eksisterende byttFane-funksjon
+            byttFane(nesteFaneId);
         }
     }
 }
+
 function visForrigeFane() {
     const faner = Array.from(document.querySelectorAll('.fane-innhold'));
-    const aktivFane = document.querySelector('.fane-innhold.aktiv');
+    const aktivFane = faner.find(fane => fane.style.display === 'block' || fane.style.display === 'flex' || fane.classList.contains('aktiv')); 
     
     if (aktivFane && faner.length > 0) {
         const gjeldendeIndex = faner.indexOf(aktivFane);
-        // Hvis det finnes en fane før denne, bytt til den
         if (gjeldendeIndex > 0) {
             const forrigeFaneId = faner[gjeldendeIndex - 1].id;
-            byttFane(forrigeFaneId); // Bruker din eksisterende byttFane-funksjon
+            byttFane(forrigeFaneId);
         }
     }
 }
