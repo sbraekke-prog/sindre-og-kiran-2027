@@ -102,6 +102,13 @@ function byttFane(faneId) {
     }
     if (valgtKnapp) {
         valgtKnapp.classList.add('aktiv');
+        
+        // Denne sørger for at knappen automatisk scroller inn i synsfeltet på mobil:
+        valgtKnapp.scrollIntoView({
+            behavior: 'smooth', // Gjør at den glir pent på plass
+            block: 'nearest',   // Unngår at hele nettsiden hopper opp/ned
+            inline: 'center'    // Sentrerer knappen på skjermen
+        });
     }
 }
 
