@@ -20,30 +20,40 @@ container.addEventListener('scroll', () => {
         }
     });
 });
+/*Sveipe-funksjon*/
 let touchStartY = 0;
 let touchEndY = 0;
 
-window.addEventListener('pointerdown', (event) => {
-    const modal = document.getElementById('info-modal');
-    if (event.target === modal) {
-        lukkModal();
-    }
-});
+let touchStartX = 0;
+let touchEndX = 0;
 
 window.addEventListener('touchstart', (event) => {
     const modal = document.getElementById('info-modal');
-    if (event.target === modal || modal.contains(event.target)) {
-        touchStartY = event.changedTouches[0].screenY;
+    if (modal && (event.target === modal || modal.contains(event.target))) {
+        touchStartX = event.changedTouches[0].screenX;
     }
 }, { passive: true });
 
 window.addEventListener('touchend', (event) => {
     const modal = document.getElementById('info-modal');
-    if (event.target === modal || modal.contains(event.target)) {
-        touchEndY = event.changedTouches[0].screenY;
+    if (modal && (event.target === modal || modal.contains(event.target))) {
+        touchEndX = event.changedTouches[0].screenX;
         
-        if (touchEndY - touchStartY > 100) {
-            lukkModal();
+        const sveipDistanse = touchStartX - touchEndX;
+        const sensitivitet = 75; // Antall piksler man må sveipe for å bytte fane
+
+        if (Math.abs(sveipDistanse) > sensitivitet) {
+            if (sveipDistanse > 0) {
+                // Sveipet fra høyre mot venstre -> Gå til neste fane
+                if (typeof visNesteFane === 'function') {
+                    visNesteFane();
+                }
+            } else {
+                // Sveipet fra venstre mot høyre -> Gå til forrige fane
+                if (typeof visForrigeFane === 'function') {
+                    visForrigeFane();
+                }
+            }
         }
     }
 }, { passive: true });

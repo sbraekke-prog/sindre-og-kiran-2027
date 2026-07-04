@@ -508,7 +508,7 @@ nav ul li a:hover {
     font-size: 1.5rem;
 }
 .valg-kort .kort-tekst {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     font-weight: bold;
     font-style: bold; 
     color: #fff;
@@ -528,9 +528,7 @@ nav ul li a:hover {
     color: #19216ecc;
     font-weight: 600;
 }
-.full-bredde-kort {
-    grid-column: span 2
-}
+
 .valg-kort-container.antall-valg {
     display: flex !important;
     flex-direction: row !important;
