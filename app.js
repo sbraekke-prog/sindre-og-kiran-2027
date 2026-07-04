@@ -103,6 +103,34 @@ function apneFraMeny(faneId) {
     
     apneModal(faneId);
 }
+function visNesteFane() {
+    // 1. Hent alle fanene dine i den rekkefølgen de ligger i HTML-en
+    const faner = Array.from(document.querySelectorAll('.fane-innhold')); 
+    // 2. Finn fane-innholdet som har klassen 'aktiv' akkurat nå
+    const aktivFane = document.querySelector('.fane-innhold.aktiv'); 
+    
+    if (aktivFane && faner.length > 0) {
+        const gjeldendeIndex = faner.indexOf(aktivFane);
+        // Hvis det finnes en fane etter denne, bytt til den
+        if (gjeldendeIndex !== -1 && gjeldendeIndex < faner.length - 1) {
+            const nesteFaneId = faner[gjeldendeIndex + 1].id;
+            byttFane(nesteFaneId); // Bruker din eksisterende byttFane-funksjon
+        }
+    }
+}
+function visForrigeFane() {
+    const faner = Array.from(document.querySelectorAll('.fane-innhold'));
+    const aktivFane = document.querySelector('.fane-innhold.aktiv');
+    
+    if (aktivFane && faner.length > 0) {
+        const gjeldendeIndex = faner.indexOf(aktivFane);
+        // Hvis det finnes en fane før denne, bytt til den
+        if (gjeldendeIndex > 0) {
+            const forrigeFaneId = faner[gjeldendeIndex - 1].id;
+            byttFane(forrigeFaneId); // Bruker din eksisterende byttFane-funksjon
+        }
+    }
+}
 
 /* RSVP-skjema logikk */
 document.addEventListener('DOMContentLoaded', () => {
