@@ -37,7 +37,7 @@ window.addEventListener('touchend', (event) => {
         touchEndX = event.changedTouches[0].screenX;
         
         const sveipDistanse = touchStartX - touchEndX;
-        const sensitivitet = 75; // Antall piksler man må sveipe for å bytte fane
+        const sensitivitet = 50; // Antall piksler man må sveipe for å bytte fane
 
         if (Math.abs(sveipDistanse) > sensitivitet) {
             if (sveipDistanse > 0) {
