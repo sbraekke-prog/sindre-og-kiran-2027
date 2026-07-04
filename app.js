@@ -21,9 +21,6 @@ container.addEventListener('scroll', () => {
     });
 });
 /*Sveipe-funksjon*/
-let touchStartY = 0;
-let touchEndY = 0;
-
 let touchStartX = 0;
 let touchEndX = 0;
 
