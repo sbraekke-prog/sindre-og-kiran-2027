@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
     <meta name="description" content="Velkommen til denne siden for bryllupet til Kiran og Sindre">
     <meta name="og:descripition" content="Dette er siden for bryllupet til Kiran og Sindre">
-    <meta property="og:image" content="https://sbraekke-prog.github.io/sindre-og-kiran-2027/bilder/kiran-sindre.jpg">
+    <meta property="og:image" content="https://sbraekke-prog.github.io/sindre-og-kiran-2027/bilder/kiran-sindre_01.jpg">
     <title>Kiran og Sindre sitt bryllup 2027</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,8 +85,78 @@
                                 </nav>
                     <div class="modal-innhold-container">
                         <div id="fane-innhold-rsvp" class="fane-innhold">
-                            <h3>Svar på invitasjon</h3>
-                            <p>Her kommer RSVP-skjemaet etter hvert.</p>
+                            <h3>Påmelding til brullypet vårt</h3>
+                            <p>Vi er takknemlige for at du ønsker å dele dagen med oss! Her kan du svare på invitasjonen du har mottatt!</p>
+                            <form id="rsvp-skjema">
+                                <div class="skjema-seksjon" id="hovedgjest">
+                                    <div class="skjema-gruppe">
+                                        <input type="text" id="gjest-navn-1" required placeholder="Skriv inn navnet ditt">
+                                    </div>
+                                    <p class="skjema-instruksjon">Jeg skal delta på:</p>
+                                <div class="valg-kort-container">
+                                    <label class="valg-kort">
+                                        <input type="radio" name="deltakelse-1" value="vielse-fest" required>
+                                        <div class="kort-innhold">
+                                            <span class="kort-ikon">💒🎉</span>
+                                            <span class="kort-tekst">Vielse, middag og fest</span>
+                                        </div>
+                                    </label>
+                                    <label class="valg-kort">
+                                        <input type="radio" name="deltakelse-1" value="vielse-fest" required>
+                                        <div class="kort-innhold">
+                                            <span class="kort-ikon">💒</span>
+                                            <span class="kort-tekst">Kun vielse</span>
+                                        </div>
+                                    </label>
+                                    <label class="valg-kort">
+                                        <input type="radio" name="deltakelse-1" value="vielse-fest" required>
+                                        <div class="kort-innhold">
+                                            <span class="kort-ikon">🎉</span>
+                                            <span class="kort-tekst">Kun fest og kaker</span>
+                                        </div>
+                                    </label>
+                                    <label class="valg-kort">
+                                        <input type="radio" name="deltakelse-1" value="vielse-fest" required>
+                                        <div class="kort-innhold">
+                                            <span class="kort-ikon">😢</span>
+                                            <span class="kort-tekst">Jeg kan ikke komme</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="skjema-gruppe" style="margin-top: 15px;">
+                                    <input type="text" id="gjest-allergi-1" placeholder="Har du noen allergier eller andre mathensyn?">
+                                </div>
+                            </div>
+                            <div class="skjema-seksjon" id="seksjon-antall-gjester" style="margin-top: 25px;">
+                                <hr class="skjema-skille">
+                                <p class="skjema-instruksjon">Svarer du for flere?</p>
+                                <div class="valg-kort-container antall-valg">
+                                    <label class="valg-kort">
+                                        <input type="radio" name="ekstra-antall-gjester" value="0" checked>
+                                        <div class="kort-innhold"><Span class="kort-tekst">Nei, kun meg</Span></div>
+                                        <input type="radio" name="ekstra-antall-gjester" value="1">
+                                        <div class="kort-innhold"><Span class="kort-tekst">+1 person</Span></div>
+                                        <input type="radio" name="ekstra-antall-gjester" value="2">
+                                        <div class="kort-innhold"><Span class="kort-tekst">+2 personer</Span></div>
+                                        <input type="radio" name="ekstra-antall-gjester" value="3">
+                                        <div class="kort-innhold"><Span class="kort-tekst">+3 personer</Span></div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="ekstra-gjester-input-beholder">
+                            </div>
+                            <div class="skjema-seksjon" id="seksjon-kontaktinfo" style="margin-top: 25px;">
+                                <hr class="skjema-skille">
+                                <p class="skjema-instruksjon">Hva er din kontaktinfo?</p>
+                                <div class = "skjema-gruppe">
+                                    <input type="email" id="kontakt-epost" required placeholder="Skriv inn eposten din">
+                                </div>
+                                <div class="skjema-gruppe">
+                                    <input type="tel" id="kontakt-telefon" style="margin-top:25px;" pattern="\+?[0-9\s]{8-15}" value="+47" placeholder="Hva er ditt telefonnummer?">
+                                </div>
+                                <button type="submit" class="mer-info-knapp" style="width:100%; margin-top:30px;">Send svar</button>
+                            </div>
+                            </form>
                             </div>
                         <div id="fane-innhold-vielsen" class="fane-innhold">
                             <h3>Vielsen i Gamle Fredrikstad Kirke</h3>

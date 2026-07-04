@@ -28,7 +28,7 @@ main {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(to bottom, rgba(8, 10, 35, 1) 0%, rgba(133, 133, 133, 0) 70%), url("bilder/kiran-sindre.jpg");
+    background-image: linear-gradient(to bottom, rgba(8, 10, 35, 1) 0%, rgba(133, 133, 133, 0) 70%), url("bilder/kiran-sindre_01.jpg");
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -291,9 +291,10 @@ nav ul li a:hover {
     display: flex;
     gap: 5px;
     padding: 20px 50px 10px 20px;
-    border-bottom: 1px solid #000, 0.1;
+    border-bottom: 1px solid #49163f;
     overflow-x: auto;
-    background-color: #000, 0.1;
+    background-color: #741e5f;
+    flex-shrink: 0;
 }
 .tab-knapp {
     background: none;
@@ -325,6 +326,10 @@ nav ul li a:hover {
 
 .fane-innhold {
     display: none;
+}
+.fane-innhold-rsvp {
+    overflow-y: auto;
+    padding-bottom: 20px;
 }
 .fane-innhold.aktiv {
     display: block;
@@ -424,6 +429,116 @@ nav ul li a:hover {
     display: inline-flex;
     transition: transform 0.3s ease;     
 }
+/* --Design på skjema*/
+#rsvp-skjema {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+    margin-top: 10px;
+}  
+.skjema-seksjon {
+    margin-bottom: 25px;
+}
+.skjema-instruksjon {
+    font-size: 0.095rem;
+    color: #fff;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+.skjema-gruppe input[type="text"],
+.skjema-gruppe input[type="email"],
+.skjema-gruppe input[type="tel"],
+.skjema-gruppe select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid #741e5f;
+    background-color: #19216ecc;
+    color: #fff;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+.skjema-gruppe input::placeholder {
+    color: #fff;
+}
+.skjema-gruppe input :focus,
+.skjema-gruppe select :focus {
+    outline: none;
+    border-color: #fff;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px #fff;
+}
+.skjema-skille {
+    border: 0;
+    height: 1px;
+    background-color: #fff;
+    margin: 25px 0;
+}
+.valg-kort-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /*Se hvordan dette blir på mobil */
+    gap: 12px;
+    margin-bottom: 15px;
+}
+.valg-kort input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.valg-kort {
+    cursor: pointer;
+    display: block;
+}
+.valg-kort .kort-innhold {
+    background-color: #19216ecc;
+    border: 1px solid #49163f;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    transition: all 0.2 ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.valg-kort .kort-ikon {
+    font-size: 1.5rem;
+}
+.valg-kort .kort-tekst {
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-style: bold; 
+    color: #fff;
+}
+.valg-kort:hover .kort-innhold {
+    background-color: #49163f;
+    border-color: #19216ecc;
+}
+.valg-kort input[type="radio"]:checked + .kort-innhold {
+    background-color: #fff;
+    border-color: #fff;
+    box-shadow: 0 4px 12px #000;
+}
+.valg-kort input[type="radio"]:checked + .kort-innhold .kort-tekst {
+    color: #19216ecc;
+    font-weight: 600;
+}
+.antall-valg {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+.antall-valg .kort-innhold {
+    padding: 12px 5px;
+}
+@media (min-width: 480px) {
+    .valg-kort-container:not(.antall-valg) {
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+
 footer {    
     background-color: #741e5f;
     color: #fff;
