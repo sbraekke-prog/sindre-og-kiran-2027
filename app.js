@@ -37,56 +37,17 @@ window.addEventListener('touchend', (event) => {
         touchEndX = event.changedTouches[0].screenX;
         
         const sveipDistanse = touchStartX - touchEndX;
-        const sensitivitet = 75; // Antall piksler man må sveipe for å bytte fane
+        const sensitivitet = 50; 
 
         if (Math.abs(sveipDistanse) > sensitivitet) {
             if (sveipDistanse > 0) {
-                // Sveipet fra høyre mot venstre -> Gå til neste fane
-                if (typeof visNesteFane === 'function') {
-                    visNesteFane();
-                }
+                visNesteFane(); 
             } else {
-                // Sveipet fra venstre mot høyre -> Gå til forrige fane
-                if (typeof visForrigeFane === 'function') {
-                    visForrigeFane();
-                }
+                visForrigeFane(); 
             }
         }
     }
 }, { passive: true });
-function apneModal(faneId) {
-    const modal = document.getElementById('info-modal');
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden'; 
-    
-    byttFane(faneId);
-}
-
-function lukkModal() {
-    const modal = document.getElementById('info-modal');
-    modal.style.display = 'none';
-    document.body.style.overflow = ''; 
-}
-
-function byttFane(faneId) {
-    const alleInnhold = document.querySelectorAll('.fane-innhold');
-    alleInnhold.forEach(innhold => {
-        innhold.classList.remove('aktiv');
-    });
-
-    const alleKnapper = document.querySelectorAll('.tab-knapp');
-    alleKnapper.forEach(knapp => {
-        knapp.classList.remove('aktiv');
-    });
-
-    const valgtInnhold = document.getElementById(`fane-innhold-${faneId}`);
-    const valgtKnapp = document.getElementById(`tab-btn-${faneId}`);
-
-    if (valgtInnhold && valgtKnapp) {
-        valgtInnhold.classList.add('aktiv');
-        valgtKnapp.classList.add('aktiv');
-    }
-}
 
 window.addEventListener('pointerdown', (event) => {
     const modal = document.getElementById('info-modal');
@@ -100,34 +61,72 @@ function apneFraMeny(faneId) {
     if (menyCheckbox) {
         menyCheckbox.checked = false;
     }
-    
     apneModal(faneId);
 }
-function visNesteFane() {
-    // 1. Hent alle fanene
-    const faner = Array.from(document.querySelectorAll('.fane-innhold')); 
+
+function apneModal(faneId) {
+    const modal = document.getElementById('info-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; 
+        byttFane(faneId);
+    }
+}
+
+function lukkModal() {
+    const modal = document.getElementById('info-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; 
+    }
+}
+
+function byttFane(faneId) {
+    const alleInnhold = document.querySelectorAll('.fane-innhold');
+    alleInnhold.forEach(innhold => {
+        innhold.classList.remove('aktiv');
+    });
+
+    const alleKnapper = document.querySelectorAll('.tab-knapp');
+    alleKnapper.forEach(knapp => {
+        knapp.classList.remove('aktiv');
+    });
+
+    const renId = faneId.replace('fane-innhold-', '');
     
-    // 2. Finn fanen som er synlig akkurat nå (siden stilen endres dynamisk)
-    const aktivFane = faner.find(fane => fane.style.display === 'block' || fane.style.display === 'flex' || fane.classList.contains('aktiv')); 
+    const valgtInnhold = document.getElementById(`fane-innhold-${renId}`);
+    const valgtKnapp = document.getElementById(`tab-btn-${renId}`);
+
+    if (valgtInnhold) {
+        valgtInnhold.classList.add('aktiv');
+    }
+    if (valgtKnapp) {
+        valgtKnapp.classList.add('aktiv');
+    }
+}
+
+function visNesteFane() {
+    const faner = Array.from(document.querySelectorAll('.fane-innhold')); 
+    const aktivFane = faner.find(fane => fane.classList.contains('aktiv')); 
     
     if (aktivFane && faner.length > 0) {
         const gjeldendeIndex = faner.indexOf(aktivFane);
         if (gjeldendeIndex !== -1 && gjeldendeIndex < faner.length - 1) {
             const nesteFaneId = faner[gjeldendeIndex + 1].id;
-            byttFane(nesteFaneId);
+            byttFane(nesteFaneId); 
         }
     }
 }
 
 function visForrigeFane() {
     const faner = Array.from(document.querySelectorAll('.fane-innhold'));
-    const aktivFane = faner.find(fane => fane.style.display === 'block' || fane.style.display === 'flex' || fane.classList.contains('aktiv')); 
+    const aktivFane = faner.find(fane => fane.classList.contains('aktiv')); 
     
     if (aktivFane && faner.length > 0) {
         const gjeldendeIndex = faner.indexOf(aktivFane);
         if (gjeldendeIndex > 0) {
             const forrigeFaneId = faner[gjeldendeIndex - 1].id;
-            byttFane(forrigeFaneId);
+            byttFane(forrigeFaneId); 
         }
     }
 }

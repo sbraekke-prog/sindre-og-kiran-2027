@@ -92,6 +92,12 @@ header nav ul li {
 #info-modal {
     touch-action: pan-y;
 }
+.fane-innhold {
+    display: none;
+}
+.fane-innhold.aktiv {
+    display: block;
+}
 
 nav ul li a {
     color: #fff;
