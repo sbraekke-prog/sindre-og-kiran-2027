@@ -89,6 +89,9 @@ header nav ul li {
     }
     
 }
+#info-modal {
+    touch-action: pan-y;
+}
 
 nav ul li a {
     color: #fff;
