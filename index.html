@@ -86,7 +86,7 @@
                     <div class="modal-innhold-container">
                         <div id="fane-innhold-rsvp" class="fane-innhold">
                             <h3>Påmelding til brullypet vårt</h3>
-                            <p>Vi er takknemlige for at du ønsker å dele dagen med oss! Her kan du svare på invitasjonen du har mottatt!</p>
+                            <p>Vi er takknemlige for at du ønsker å dele dagen med oss! Her kan du svare på invitasjonen du har mottatt:</p>
                             <form id="rsvp-skjema">
                                 <div class="skjema-seksjon" id="hovedgjest">
                                     <div class="skjema-gruppe">
@@ -96,35 +96,29 @@
                                     <p class="skjema-instruksjon">Jeg skal delta på:</p>
                                 <div class="valg-kort-container">
                                     <label class="valg-kort">
-                                        <input type="radio" name="deltakelse-1" value="vielse-fest" required>
-                                        <div class="kort-innhold">
-                                            <span class="kort-ikon">💒🎉</span>
-                                            <span class="kort-tekst">Vielse, middag og fest</span>
-                                        </div>
-                                    </label>
-                                    <label class="valg-kort">
-                                        <input type="radio" name="deltakelse-1" value="vielse-fest" required>
+                                        <input type="checkbox" name="deltakelse-1" value="vielse-middag" class="deltakelse-sjekkboks">
                                         <div class="kort-innhold">
                                             <span class="kort-ikon">💒</span>
-                                            <span class="kort-tekst">Kun vielse</span>
+                                            <span class="kort-tekst">Vielse og middag</span>
                                         </div>
                                     </label>
                                     <label class="valg-kort">
-                                        <input type="radio" name="deltakelse-1" value="vielse-fest" required>
+                                        <input type="checkbox" name="deltakelse-1" value="fest-kaker" class="deltakelse-sjekkboks">
                                         <div class="kort-innhold">
                                             <span class="kort-ikon">🎉</span>
-                                            <span class="kort-tekst">Kun fest og kaker</span>
+                                            <span class="kort-tekst">Fest og kaker</span>
                                         </div>
                                     </label>
-                                    <label class="valg-kort">
-                                        <input type="radio" name="deltakelse-1" value="vielse-fest" required>
+                                    <label class="valg-kort full-bredde-kort">
+                                        <input type="checkbox" name="deltakelse-1" value="kan-ikke-komme" class="kan-ikke-sjekkboks">
                                         <div class="kort-innhold">
                                             <span class="kort-ikon">😢</span>
                                             <span class="kort-tekst">Jeg kan ikke komme</span>
                                         </div>
                                     </label>
                                 </div>
-                                <div class="skjema-gruppe" style="margin-top: 15px;">
+                                <div class="skjema-gruppe" id="allergi-gruppe-1" style="margin-top: 15px;">
+                                    <p class="skjema-instruksjon">Matallergi eller andre hensyn?</p>
                                     <input type="text" id="gjest-allergi-1" placeholder="Har du noen allergier eller andre mathensyn?">
                                 </div>
                             </div>
@@ -134,13 +128,19 @@
                                 <div class="valg-kort-container antall-valg">
                                     <label class="valg-kort">
                                         <input type="radio" name="ekstra-antall-gjester" value="0" checked>
-                                        <div class="kort-innhold"><Span class="kort-tekst">Nei, kun meg</Span></div>
+                                        <div class="kort-innhold"><span class="kort-tekst">Nei</span></div>
+                                        </label>
+                                    <label class="valg-kort">
                                         <input type="radio" name="ekstra-antall-gjester" value="1">
-                                        <div class="kort-innhold"><Span class="kort-tekst">+1 person</Span></div>
+                                        <div class="kort-innhold"><span class="kort-tekst">+1</span></div>
+                                        </label>
+                                    <label class="valg-kort">
                                         <input type="radio" name="ekstra-antall-gjester" value="2">
-                                        <div class="kort-innhold"><Span class="kort-tekst">+2 personer</Span></div>
+                                        <div class="kort-innhold"><span class="kort-tekst">+2</span></div>
+                                        </label>
+                                    <label class="valg-kort">
                                         <input type="radio" name="ekstra-antall-gjester" value="3">
-                                        <div class="kort-innhold"><Span class="kort-tekst">+3 personer</Span></div>
+                                        <div class="kort-innhold"><span class="kort-tekst">+3</span></div>
                                     </label>
                                 </div>
                             </div>
