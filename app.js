@@ -20,6 +20,33 @@ container.addEventListener('scroll', () => {
         }
     });
 });
+let touchStartY = 0;
+let touchEndY = 0;
+
+window.addEventListener('pointerdown', (event) => {
+    const modal = document.getElementById('info-modal');
+    if (event.target === modal) {
+        lukkModal();
+    }
+});
+
+window.addEventListener('touchstart', (event) => {
+    const modal = document.getElementById('info-modal');
+    if (event.target === modal || modal.contains(event.target)) {
+        touchStartY = event.changedTouches[0].screenY;
+    }
+}, { passive: true });
+
+window.addEventListener('touchend', (event) => {
+    const modal = document.getElementById('info-modal');
+    if (event.target === modal || modal.contains(event.target)) {
+        touchEndY = event.changedTouches[0].screenY;
+        
+        if (touchEndY - touchStartY > 100) {
+            lukkModal();
+        }
+    }
+}, { passive: true });
 function apneModal(faneId) {
     const modal = document.getElementById('info-modal');
     modal.style.display = 'flex';
@@ -54,7 +81,7 @@ function byttFane(faneId) {
     }
 }
 
-window.addEventListener('click', (event) => {
+window.addEventListener('pointerdown', (event) => {
     const modal = document.getElementById('info-modal');
     if (event.target === modal) {
         lukkModal();
