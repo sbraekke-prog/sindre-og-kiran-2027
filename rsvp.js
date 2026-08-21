@@ -162,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Feil ved sending:', error);
                 statusMelding.style.display = 'block';
                 statusMelding.style.color = 'red';
+                statusMelding.style.textAlign = 'center';
                 statusMelding.innerText = "Noe gikk galt. Vennligst prøv igjen.";
             })
             .finally(() => {
