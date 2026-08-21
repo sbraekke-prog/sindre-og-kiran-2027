@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(() => {
                 statusMelding.style.display = 'block';
-                stussMelding.style.textAlign = 'center';
+                statusMelding.style.textAlign = 'center';
                 statusMelding.style.color = 'white';
                 statusMelding.innerText = "Takk for svaret! Påmeldingen er registrert.";
                 skjema.reset();
