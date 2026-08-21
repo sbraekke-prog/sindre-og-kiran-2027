@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5FANZMMUL0JVonBTizYUpDYfgAQ5S7hnU2JXRDb35oD71jhdDyKSud2mXzyNhBS_q5A/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwJFLHxP4MXItt5iLjg3NnTZntj3g7sQpZFE2p3c2a0lHkIvLmtcfGpOiF9HU17r7vMA/exec";
 
     const skjema = document.getElementById('rsvp-skjema');
     const sendKnapp = document.getElementById('send-knapp');
