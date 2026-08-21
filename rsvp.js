@@ -1,42 +1,64 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkiHcAkOfidBnoms6UNut5zRNhncZ4_Q7O5AxOsQqnn8AGYpBqoNzzvButveP4XOeEug/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5FANZMMUL0JVonBTizYUpDYfgAQ5S7hnU2JXRDb35oD71jhdDyKSud2mXzyNhBS_q5A/exec";
 
 const skjema = document.getElementById('rsvp-skjema');
-const statusMelding = document.getElementById('skjema-status');
 const sendKnapp = document.getElementById('send-knapp');
 
-skjema.addEventListener('submit', (e) => {
-    e.preventDefault(); // Forhindrer at siden laster på nytt
-    
-    sendKnapp.disabled = true;
-    sendKnapp.innerText = "Sender...";
+let statusMelding = document.getElementById('skjema-status');
+if (!statusMelding && skjema) {
+    statusMelding = document.createElement('div');
+    statusMelding.id = 'skjema-status';
+    statusMelding.style.marginTop = '15px';
+    statusMelding.style.textAlign = 'center';
+    skjema.appendChild(statusMelding);
+}
 
-    const skjemaData = {
-        navn: document.getElementById('navn').value,
-        epost: document.getElementById('epost').value,
-        kommer: document.getElementById('kommer').value,
-        allergier: document.getElementById('allergier').value
-    };
+if (skjema) {
+    skjema.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        sendKnapp.disabled = true;
+        sendKnapp.innerText = "Sender...";
+        statusMelding.style.display = 'none';
 
-    fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors', // Viktig for å unngå CORS-blokkering fra Google Apps Script
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(skjemaData)
-    })
-    .then(() => {
-        statusMelding.style.display = 'block';
-        statusMelding.innerText = "Takk for svaret! Påmeldingen er registrert.";
-        skjema.reset();
-        sendKnapp.disabled = false;
-        sendKnapp.innerText = "Send svar";
-    })
-    .catch(error => {
-        console.error('Feil:', error);
-        statusMelding.style.display = 'block';
-        statusMelding.innerText = "Noe gikk galt. Prøv igjen senere.";
-        sendKnapp.disabled = false;
-        sendKnapp.innerText = "Send svar";
+        const valgteDeltakelser = Array.from(
+            document.querySelectorAll('input[name="deltakelse-1"]:checked')
+        ).map(cb => cb.parentElement.querySelector('.kort-tekst').innerText.trim());
+
+        const ekstraGjesterValg = document.querySelector('input[name="ekstra-antall-gjester"]:checked');
+        const ekstraGjester = ekstraGjesterValg ? ekstraGjesterValg.value : "0";
+
+        const skjemaData = {
+            navn: document.getElementById('gjest-navn-1').value,
+            deltakelse: valgteDeltakelser.length > 0 ? valgteDeltakelser.join(', ') : 'Ingen valgt',
+            allergier: document.getElementById('gjest-allergi-1').value,
+            ekstraGjester: ekstraGjester,
+            epost: document.getElementById('kontakt-epost').value,
+            telefon: document.getElementById('kontakt-telefon').value
+        };
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(skjemaData)
+        })
+        .then(() => {
+            statusMelding.style.display = 'block';
+            statusMelding.style.color = 'green';
+            statusMelding.innerText = "Takk for svaret! Påmeldingen er registrert.";
+            skjema.reset();
+        })
+        .catch(error => {
+            console.error('Feil ved sending:', error);
+            statusMelding.style.display = 'block';
+            statusMelding.style.color = 'red';
+            statusMelding.innerText = "Noe gikk galt. Vennligst prøv igjen.";
+        })
+        .finally(() => {
+            sendKnapp.disabled = false;
+            sendKnapp.innerText = "Send svar";
+        });
     });
-});
+}
