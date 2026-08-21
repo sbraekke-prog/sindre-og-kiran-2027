@@ -2,6 +2,32 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5FANZMMUL0JVonBTiz
 
 const skjema = document.getElementById('rsvp-skjema');
 const sendKnapp = document.getElementById('send-knapp');
+const ekstraBeholder = document.getElementById('ekstra-gjester-input-beholder');
+
+document.querySelectorAll('input[name="ekstra-antall-gjester"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+        const antall = parseInt(e.target.value);
+        if (ekstraBeholder) {
+            ekstraBeholder.innerHTML = '';
+            for (let i = 1; i <= antall; i++) {
+                const feltGruppe = document.createElement('div');
+                feltGruppe.className = 'skjema-seksjon ekstra-gjest-seksjon';
+                feltGruppe.style.marginTop = '20px';
+                feltGruppe.innerHTML = `
+                    <hr class="skjema-skille">
+                    <p class="skjema-instruksjon"><strong>Ekstra gjest ${i}</strong></p>
+                    <div class="skjema-gruppe">
+                        <input type="text" class="ekstra-gjest-navn" placeholder="Navn på gjest ${i}" required>
+                    </div>
+                    <div class="skjema-gruppe" style="margin-top: 10px;">
+                        <input type="text" class="ekstra-gjest-allergi" placeholder="Allergier/mathensyn for gjest ${i}">
+                    </div>
+                `;
+                ekstraBeholder.appendChild(feltGruppe);
+            }
+        }
+    });
+});
 
 let statusMelding = document.getElementById('skjema-status');
 if (!statusMelding && skjema) {
@@ -24,20 +50,28 @@ if (skjema) {
             document.querySelectorAll('input[name="deltakelse-1"]:checked')
         ).map(cb => cb.parentElement.querySelector('.kort-tekst').innerText.trim());
 
+        const ekstraNavn = Array.from(document.querySelectorAll('.ekstra-gjest-navn')).map(input => input.value.trim());
+        const ekstraAllergier = Array.from(document.querySelectorAll('.ekstra-gjest-allergi')).map(input => input.value.trim());
 
-        const ekstraGjesterValg = document.querySelector('input[name="ekstra-antall-gjester"]:checked');
-        const ekstraGjester = ekstraGjesterValg ? ekstraGjesterValg.value : "0";
-
+        let ekstraGjesterTekst = [];
+        for (let i = 0; i < ekstraNavn.length; i++) {
+            if (ekstraNavn[i]) {
+                let info = ekstraNavn[i];
+                if (ekstraAllergier[i]) {
+                    info += ` (Allergi: ${ekstraAllergier[i]})`;
+                }
+                ekstraGjesterTekst.push(info);
+            }
+        }
 
         const skjemaData = {
             navn: document.getElementById('gjest-navn-1').value,
             deltakelse: valgteDeltakelser.length > 0 ? valgteDeltakelser.join(', ') : 'Ingen valgt',
             allergier: document.getElementById('gjest-allergi-1').value,
-            ekstraGjester: ekstraGjester,
+            ekstraGjester: ekstraGjesterTekst.length > 0 ? ekstraGjesterTekst.join(' | ') : 'Ingen',
             epost: document.getElementById('kontakt-epost').value,
             telefon: document.getElementById('kontakt-telefon').value
         };
-
 
         fetch(SCRIPT_URL, {
             method: 'POST',
@@ -52,6 +86,7 @@ if (skjema) {
             statusMelding.style.color = 'green';
             statusMelding.innerText = "Takk for svaret! Påmeldingen er registrert.";
             skjema.reset();
+            if (ekstraBeholder) ekstraBeholder.innerHTML = '';
         })
         .catch(error => {
             console.error('Feil ved sending:', error);
