@@ -47,28 +47,38 @@ if (skjema) {
         statusMelding.style.display = 'none';
 
         const valgteDeltakelser = Array.from(
-            document.querySelectorAll('input[name="deltakelse-1"]:checked')
+            document.querySelectorAll('input[name="deltakelse-1"]:checked, .kan-ikke-sjekkboks:checked')
         ).map(cb => cb.parentElement.querySelector('.kort-tekst').innerText.trim());
 
-        const ekstraNavn = Array.from(document.querySelectorAll('.ekstra-gjest-navn')).map(input => input.value.trim());
-        const ekstraAllergier = Array.from(document.querySelectorAll('.ekstra-gjest-allergi')).map(input => input.value.trim());
+        const ekstraGjesterRadio = document.querySelector('input[name="ekstra-antall-gjester"]:checked');
+        const antallEkstra = ekstraGjesterRadio ? parseInt(ekstraGjesterRadio.value) : 0;
+        
+        let ekstraGjesterVerdi = "Nei";
 
-        let ekstraGjesterTekst = [];
-        for (let i = 0; i < ekstraNavn.length; i++) {
-            if (ekstraNavn[i]) {
-                let info = ekstraNavn[i];
-                if (ekstraAllergier[i]) {
-                    info += ` (Allergi: ${ekstraAllergier[i]})`;
+        if (antallEkstra > 0) {
+            const ekstraNavn = Array.from(document.querySelectorAll('.ekstra-gjest-navn')).map(input => input.value.trim());
+            const ekstraAllergier = Array.from(document.querySelectorAll('.ekstra-gjest-allergi')).map(input => input.value.trim());
+
+            let detaljer = [];
+            for (let i = 0; i < ekstraNavn.length; i++) {
+                if (ekstraNavn[i]) {
+                    let info = ekstraNavn[i];
+                    if (ekstraAllergier[i]) {
+                        info += ` (Allergi: ${ekstraAllergier[i]})`;
+                    }
+                    detaljer.push(info);
                 }
-                ekstraGjesterTekst.push(info);
             }
+
+            const valgtEtikett = ekstraGjesterRadio.parentElement.querySelector('.kort-tekst').innerText.trim();
+            ekstraGjesterVerdi = `${valgtEtikett}: ${detaljer.join(' | ')}`;
         }
 
         const skjemaData = {
             navn: document.getElementById('gjest-navn-1').value,
             deltakelse: valgteDeltakelser.length > 0 ? valgteDeltakelser.join(', ') : 'Ingen valgt',
             allergier: document.getElementById('gjest-allergi-1').value,
-            ekstraGjester: ekstraGjesterTekst.length > 0 ? ekstraGjesterTekst.join(' | ') : 'Ingen',
+            ekstraGjester: ekstraGjesterVerdi,
             epost: document.getElementById('kontakt-epost').value,
             telefon: document.getElementById('kontakt-telefon').value
         };
