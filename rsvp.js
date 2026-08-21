@@ -2,6 +2,49 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5FANZMMUL0JVonBTiz
 
 const skjema = document.getElementById('rsvp-skjema');
 const sendKnapp = document.getElementById('send-knapp');
+const ekstraBeholder = document.getElementById('ekstra-gjester-input-beholder');
+const kanIkkeSjekkboks = document.querySelector('.kan-ikke-sjekkboks');
+const deltakelseSjekkbokser = document.querySelectorAll('.deltakelse-sjekkboks');
+
+document.querySelectorAll('input[name="ekstra-antall-gjester"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+        const antall = parseInt(e.target.value);
+        ekstraBeholder.innerHTML = '';
+
+        for (let i = 1; i <= antall; i++) {
+            const feltGruppe = document.createElement('div');
+            feltGruppe.className = 'skjema-seksjon ekstra-gjest-seksjon';
+            feltGruppe.style.marginTop = '20px';
+            feltGruppe.innerHTML = `
+                <hr class="skjema-skille">
+                <p class="skjema-instruksjon"><strong>Ekstra gjest ${i}</strong></p>
+                <div class="skjema-gruppe">
+                    <input type="text" class="ekstra-gjest-navn" placeholder="Navn på gjest ${i}" required>
+                </div>
+                <div class="skjema-gruppe" style="margin-top: 10px;">
+                    <input type="text" class="ekstra-gjest-allergi" placeholder="Allergier/mathensyn for gjest ${i}">
+                </div>
+            `;
+            ekstraBeholder.appendChild(feltGruppe);
+        }
+    });
+});
+
+if (kanIkkeSjekkboks) {
+    kanIkkeSjekkboks.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            deltakelseSjekkbokser.forEach(cb => cb.checked = false);
+        }
+    });
+
+    deltakelseSjekkbokser.forEach(cb => {
+        cb.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                kanIkkeSjekkboks.checked = false;
+            }
+        });
+    });
+}
 
 let statusMelding = document.getElementById('skjema-status');
 if (!statusMelding && skjema) {
@@ -20,18 +63,27 @@ if (skjema) {
         sendKnapp.innerText = "Sender...";
         statusMelding.style.display = 'none';
 
-        const valgteDeltakelser = Array.from(
-            document.querySelectorAll('input[name="deltakelse-1"]:checked')
+        let valgteDeltakelser = Array.from(
+            document.querySelectorAll('input[name="deltakelse-1"]:checked, .kan-ikke-sjekkboks:checked')
         ).map(cb => cb.parentElement.querySelector('.kort-tekst').innerText.trim());
 
-        const ekstraGjesterValg = document.querySelector('input[name="ekstra-antall-gjester"]:checked');
-        const ekstraGjester = ekstraGjesterValg ? ekstraGjesterValg.value : "0";
+        const ekstraNavn = Array.from(document.querySelectorAll('.ekstra-gjest-navn')).map(input => input.value.trim());
+        const ekstraAllergier = Array.from(document.querySelectorAll('.ekstra-gjest-allergi')).map(input => input.value.trim());
+
+        let ekstraGjesterInfo = [];
+        for (let i = 0; i < ekstraNavn.length; i++) {
+            if (ekstraNavn[i]) {
+                let info = ekstraNavn[i];
+                if (ekstraAllergier[i]) info += ` (${ekstraAllergier[i]})`;
+                ekstraGjesterInfo.push(info);
+            }
+        }
 
         const skjemaData = {
             navn: document.getElementById('gjest-navn-1').value,
             deltakelse: valgteDeltakelser.length > 0 ? valgteDeltakelser.join(', ') : 'Ingen valgt',
             allergier: document.getElementById('gjest-allergi-1').value,
-            ekstraGjester: ekstraGjester,
+            ekstraGjester: ekstraGjesterInfo.length > 0 ? ekstraGjesterInfo.join(' | ') : 'Ingen',
             epost: document.getElementById('kontakt-epost').value,
             telefon: document.getElementById('kontakt-telefon').value
         };
@@ -49,6 +101,7 @@ if (skjema) {
             statusMelding.style.color = 'green';
             statusMelding.innerText = "Takk for svaret! Påmeldingen er registrert.";
             skjema.reset();
+            ekstraBeholder.innerHTML = '';
         })
         .catch(error => {
             console.error('Feil ved sending:', error);
