@@ -4,12 +4,12 @@ const totaltAntallKort = container.children.length;
 for (let i = 0; i < totaltAntallKort; i++) {
     const prikk = document.createElement('div');
     prikk.classList.add('prikk');
-    if (i === 0) prikk.classList.add('aktiv'); // Det første kortet starter som aktivt
+    if (i === 0) prikk.classList.add('aktiv');
     indikatorContainer.appendChild(prikk);
 }
 const prikker = document.querySelectorAll('.prikk');
 container.addEventListener('scroll', () => {
-    const kortBredde = container.children[0].offsetWidth + 25; // Bredde + gap
+    const kortBredde = container.children[0].offsetWidth + 25;
     const gjeldendeKort = Math.round(container.scrollLeft / kortBredde);
     const tryggIndex = Math.min(Math.max(gjeldendeKort, 0), totaltAntallKort - 1);
     prikker.forEach((prikk, index) => {
@@ -20,7 +20,7 @@ container.addEventListener('scroll', () => {
         }
     });
 });
-/*Sveipe-funksjon*/
+
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -103,11 +103,10 @@ function byttFane(faneId) {
     if (valgtKnapp) {
         valgtKnapp.classList.add('aktiv');
         
-        // Denne sørger for at knappen automatisk scroller inn i synsfeltet på mobil:
         valgtKnapp.scrollIntoView({
-            behavior: 'smooth', // Gjør at den glir pent på plass
-            block: 'nearest',   // Unngår at hele nettsiden hopper opp/ned
-            inline: 'center'    // Sentrerer knappen på skjermen
+            behavior: 'smooth', 
+            block: 'nearest',   
+            inline: 'center'    
         });
     }
 }
@@ -137,99 +136,3 @@ function visForrigeFane() {
         }
     }
 }
-
-/* RSVP-skjema logikk */
-document.addEventListener('DOMContentLoaded', () => {
-    const kanIkkeSjekkboks = document.querySelector('.kan-ikke-sjekkboks');
-    const deltakelseSjekkbokser = document.querySelectorAll('.deltakelse-sjekkboks');
-    const seksjonAntallGjester = document.getElementById('seksjon-antall-gjester');
-    const allergiGruppe1 = document.getElementById('allergi-gruppe-1');
-    const ekstraGjesterBeholder = document.getElementById('ekstra-gjester-input-beholder');
-    const antallGjesterRadionknapper = document.querySelectorAll('input[name="ekstra-antall-gjester"]');
-
-    kanIkkeSjekkboks.addEventListener('change', (e) => {
-    if (e.target.checked) {
-        deltakelseSjekkbokser.forEach(cb => cb.checked = false);
-        if (allergiGruppe1) {
-            allergiGruppe1.style.display = 'none';
-        }
-        if (seksjonAntallGjester) {
-            seksjonAntallGjester.style.display = 'none';
-        }
-        if (ekstraGjesterBeholder) {
-            ekstraGjesterBeholder.innerHTML = '';
-        }
-        antallGjesterRadionknapper.forEach(radio => radio.value === "0" ? radio.checked = true : radio.checked = false);
-    } else {
-        if (allergiGruppe1) {
-            allergiGruppe1.style.display = 'block';
-        }
-        if (seksjonAntallGjester) {
-            seksjonAntallGjester.style.display = 'block';
-        }
-    }
-});
-
-    deltakelseSjekkbokser.forEach(sjekkboks => {
-        sjekkboks.addEventListener('change', () => {
-            if (sjekkboks.checked) {
-                kanIkkeSjekkboks.checked = false;
-                if (allergiGruppe1) {
-                    allergiGruppe1.style.display = 'block';
-                }
-                if (seksjonAntallGjester) {
-                    seksjonAntallGjester.style.display = 'block';
-                }
-            } else {
-                allergiGruppe1.style.display = 'block';
-                seksjonAntallGjester.style.display = 'block';
-            }
-        });
-    });
-
-    antallGjesterRadionknapper.forEach(radio => {
-        radio.addEventListener('change', (e) => {
-            const antallEkstra = parseInt(e.target.value);
-            ekstraGjesterBeholder.innerHTML = '';
-
-            for (let i = 1; i <= antallEkstra; i++) {
-                const gjestSeksjon = document.createElement('div');
-                gjestSeksjon.classList.add('skjema-seksjon');
-                gjestSeksjon.style.marginTop = '35px';
-                
-                gjestSeksjon.innerHTML = `
-                    <hr class="skjema-skille">
-                    <h3 style="font-size: 1.6em; margin-bottom: 15px;">Gjest #${i + 1}</h3>
-                    
-                    <div class="skjema-gruppe">
-                        <input type="text" id="gjest-navn-${i + 1}" required placeholder="Fullt navn på gjest #${i + 1} *">
-                    </div>
-
-                    <p class="skjema-instruksjon" style="margin-top: 15px;">Hva ønsker gjest #${i + 1} å delta på? *</p>
-                    <div class="valg-kort-container">
-                        <label class="valg-kort">
-                            <input type="checkbox" name="deltakelse-${i + 1}" value="vielse-middag">
-                            <div class="kort-innhold">
-                                <span class="kort-ikon">⛪</span>
-                                <span class="kort-tekst">Vielse & middag</span>
-                            </div>
-                        </label>
-                        <label class="valg-kort">
-                            <input type="checkbox" name="deltakelse-${i + 1}" value="fest-kaker">
-                            <div class="kort-innhold">
-                                <span class="kort-ikon">🎉</span>
-                                <span class="kort-tekst">Fest & kaker</span>
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="skjema-gruppe" style="margin-top: 15px;">
-                        <input type="text" id="gjest-allergi-${i + 1}" placeholder="Allergier eller dietthensyn for gjest #${i + 1}">
-                    </div>
-                `;
-                
-                ekstraGjesterBeholder.appendChild(gjestSeksjon);
-            }
-        });
-    });
-});
