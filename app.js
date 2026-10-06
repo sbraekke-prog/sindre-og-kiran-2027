@@ -149,7 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showModal() {
-    // Sett src først her slik at videoen ikke laster i bakgrunnen før modalen vises
     iframe.src = iframe.getAttribute("data-src");
     
     modal.classList.remove("hidden");
@@ -165,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       modal.classList.add("hidden");
       modal.setAttribute("aria-hidden", "true");
-      // Tøm src slik at videoen og lyden stopper umiddelbart når du lukker
       iframe.src = "";
     }, 400);
   }
