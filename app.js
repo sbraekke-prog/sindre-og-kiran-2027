@@ -136,3 +136,45 @@ function visForrigeFane() {
         }
     }
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("video-modal");
+  const iframe = document.getElementById("save-the-date-video");
+  const closeBtn = document.getElementById("lukk-video-btn");
+
+  const hasVideoHash = window.location.hash === "#video";
+  const hasSeenVideo = localStorage.getItem("hasSeenWelcomeVideo");
+
+  if (hasVideoHash && !hasSeenVideo) {
+    showModal();
+  }
+
+  function showModal() {
+    // Sett src først her slik at videoen ikke laster i bakgrunnen før modalen vises
+    iframe.src = iframe.getAttribute("data-src");
+    
+    modal.classList.remove("hidden");
+    setTimeout(() => modal.classList.add("show"), 10);
+    modal.setAttribute("aria-hidden", "false");
+
+    localStorage.setItem("hasSeenWelcomeVideo", "true");
+  }
+
+  function closeModal() {
+    modal.classList.remove("show");
+    
+    setTimeout(() => {
+      modal.classList.add("hidden");
+      modal.setAttribute("aria-hidden", "true");
+      // Tøm src slik at videoen og lyden stopper umiddelbart når du lukker
+      iframe.src = "";
+    }, 400);
+  }
+
+  closeBtn.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+});
