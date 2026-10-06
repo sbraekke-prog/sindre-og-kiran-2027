@@ -144,9 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const hasVideoHash = window.location.hash === "#video";
   const hasSeenVideo = localStorage.getItem("hasSeenSaveTheDateVideo");
 
-  if (hasVideoHash && !hasSeenVideo) {
+/* if (hasVideoHash && !hasSeenVideo) {
     showModal();
-  }
+  } */
+
+  if (hasVideoHash) {
+    showModal();
+    }
 
   function showModal() {
     iframe.src = iframe.getAttribute("data-src");
