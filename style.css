@@ -90,6 +90,12 @@ header nav ul li {
     
 }
 /* Video-popup modal */
+/* Skjul som standard */
+.hidden {
+  display: none !important;
+}
+
+/* Modal Overlay */
 .video-modal {
   position: fixed;
   top: 0;
@@ -109,7 +115,7 @@ header nav ul li {
   opacity: 1;
 }
 
-.video-modal-content {
+.video-modal-innhold {
   position: relative;
   width: 90%;
   max-width: 800px;
@@ -118,13 +124,13 @@ header nav ul li {
   overflow: hidden;
 }
 
-.video-wrapper {
+.video-container {
   position: relative;
-  padding-bottom: 177,77%;
+  padding-bottom: 177.77%;
   height: 0;
 }
 
-.video-wrapper video {
+.video-container iframe {
   position: absolute;
   top: 0;
   left: 0;

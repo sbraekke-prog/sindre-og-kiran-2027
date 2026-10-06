@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.getElementById("lukk-video-btn");
 
   const hasVideoHash = window.location.hash === "#video";
-  const hasSeenVideo = localStorage.getItem("hasSeenWelcomeVideo");
+  const hasSeenVideo = localStorage.getItem("hasSeenSaveTheDateVideo");
 
   if (hasVideoHash && !hasSeenVideo) {
     showModal();
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => modal.classList.add("show"), 10);
     modal.setAttribute("aria-hidden", "false");
 
-    localStorage.setItem("hasSeenWelcomeVideo", "true");
+    localStorage.setItem("hasSeenSaveTheDateVideo", "true");
   }
 
   function closeModal() {
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
       iframe.src = "";
     }, 400);
   }
-
+  
   closeBtn.addEventListener("click", closeModal);
 
   modal.addEventListener("click", (e) => {
