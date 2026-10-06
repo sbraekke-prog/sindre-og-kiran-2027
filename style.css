@@ -90,12 +90,6 @@ header nav ul li {
     
 }
 /* Video-popup modal */
-/* Skjul som standard */
-.hidden {
-  display: none !important;
-}
-
-/* Modal Overlay */
 .video-modal {
   position: fixed;
   top: 0;
