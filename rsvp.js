@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             fetch(SCRIPT_URL, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
