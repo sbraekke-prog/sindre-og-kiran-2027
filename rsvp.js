@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwJFLHxP4MXItt5iLjg3NnTZntj3g7sQpZFE2p3c2a0lHkIvLmtcfGpOiF9HU17r7vMA/exec";
+    const SCRIPT_URL = "https://hooks.zapier.com/hooks/catch/28024999/49vte2n/";
 
     const skjema = document.getElementById('rsvp-skjema');
     const sendKnapp = document.getElementById('send-knapp');
@@ -144,9 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: {
-                    'Content-Type': 'text/plain;charset=utf-8'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(skjemaData)
             })
