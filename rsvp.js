@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const skjemaData = {
+                tidspunkt: new Date().toLocaleString('no-NO', { timeZone: 'Europe/Oslo' }),
                 navn: document.getElementById('gjest-navn-1').value,
                 deltakelse: valgteDeltakelserHovedgjest.length > 0 ? valgteDeltakelserHovedgjest.join(', ') : 'Ingen valgt',
                 allergier: document.getElementById('gjest-allergi-1').value,
